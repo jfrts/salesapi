@@ -1,0 +1,7 @@
+{
+  "name": "sales-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jcfrts <jcsr.frts@gmail.com>",
+  "license": "MIT"
+}
