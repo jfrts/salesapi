@@ -6,4 +6,4 @@ routes.get('/', (request, response) => {
     return response.json({ message: 'Hello world!' });
 });
 
-export default routes;
+export { routes };
