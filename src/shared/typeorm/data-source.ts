@@ -15,3 +15,5 @@ export const AppDataSource = new DataSource({
     migrations: ['src/shared/typeorm/migrations/*.ts'],
     migrationsTableName: 'migrations',
 });
+
+AppDataSource.initialize();
