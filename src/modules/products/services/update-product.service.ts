@@ -12,7 +12,11 @@ interface IRequest {
 }
 
 class UpdateProductService {
-    public async execute({ id, data: { name, price, quantity } }: IRequest) {
+    constructor({ id, data: { name, price, quantity } }: IRequest) {
+        this.execute({ id, data: { name, price, quantity } });
+    }
+
+    private async execute({ id, data: { name, price, quantity } }: IRequest) {
         const productExists = await ProductRepository.findByName(name);
 
         if (productExists) {

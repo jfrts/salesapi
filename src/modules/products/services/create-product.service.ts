@@ -9,7 +9,11 @@ interface IRequest {
 }
 
 class CreateProductService {
-    public async execute({
+    constructor({ name, price, quantity }: IRequest) {
+        this.execute({ name, price, quantity });
+    }
+
+    private async execute({
         name,
         price,
         quantity,
