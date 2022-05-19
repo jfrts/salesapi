@@ -9,19 +9,17 @@ interface IRequest {
 }
 
 class CreateProductService {
-    constructor({ name, price, quantity }: IRequest) {
-        this.execute({ name, price, quantity });
-    }
-
-    private async execute({
+    public async execute({
         name,
         price,
         quantity,
     }: IRequest): Promise<Product> {
         const productExists = await ProductRepository.findByName(name);
-
         if (productExists) {
-            throw new AppError(400, 'Already exists a product with this name.');
+            throw new AppError(
+                400,
+                'Already exists a product with this name.',
+            ).getError();
         }
 
         const product = ProductRepository.create({

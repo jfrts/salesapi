@@ -5,11 +5,7 @@ interface IRequest {
 }
 
 class DeleteProductService {
-    constructor({ id }: IRequest) {
-        this.execute({ id });
-    }
-
-    private async execute({ id }: IRequest) {
+    public async execute({ id }: IRequest) {
         const result = await ProductRepository.delete(id);
         return result;
     }
