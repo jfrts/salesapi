@@ -7,7 +7,7 @@ import {
     ShowProductService,
 } from '../services';
 
-class ProductController {
+export class ProductController {
     public async index(request: Request, response: Response) {
         const products = await new ListProductService().execute();
         return response.status(200).json(products);
@@ -54,5 +54,3 @@ class ProductController {
         return response.status(200).send();
     }
 }
-
-export { ProductController };

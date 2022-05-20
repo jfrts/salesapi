@@ -17,10 +17,7 @@ export class CreateProductService {
         const productExists = await ProductRepository.findByName(name);
 
         if (productExists) {
-            const promise = Promise.reject(
-                new AppError(400, 'Already exists one product with this name.'),
-            );
-            return promise.catch(error => error);
+            throw new AppError('Already exists one product with this name.');
         }
 
         const product = ProductRepository.create({
