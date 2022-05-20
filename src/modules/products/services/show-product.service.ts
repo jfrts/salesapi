@@ -6,18 +6,19 @@ interface IRequest {
     id: string;
 }
 
-class ShowProductService {
+export class ShowProductService {
     public async execute({ id }: IRequest): Promise<Product> {
         const product = await ProductRepository.findOne({
             where: { id },
         });
 
         if (!product) {
-            throw new AppError(400, 'Product was not found.');
+            const promise = Promise.reject(
+                new AppError(400, 'Product was not found.'),
+            );
+            return promise.catch(error => error);
         }
 
         return product;
     }
 }
-
-export { ShowProductService };

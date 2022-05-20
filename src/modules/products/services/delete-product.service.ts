@@ -4,11 +4,9 @@ interface IRequest {
     id: string;
 }
 
-class DeleteProductService {
+export class DeleteProductService {
     public async execute({ id }: IRequest) {
         const result = await ProductRepository.delete(id);
         return result;
     }
 }
-
-export { DeleteProductService };

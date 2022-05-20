@@ -11,12 +11,15 @@ interface IRequest {
     };
 }
 
-class UpdateProductService {
+export class UpdateProductService {
     public async execute({ id, data: { name, price, quantity } }: IRequest) {
         const productExists = await ProductRepository.findByName(name);
 
         if (productExists) {
-            throw new AppError(400, 'Already exists a product with this name.');
+            const promise = Promise.reject(
+                new AppError(400, 'Already exists one product with this name.'),
+            );
+            return promise.catch(error => error);
         }
 
         const product = await ProductRepository.update(id, {
@@ -27,5 +30,3 @@ class UpdateProductService {
         return product;
     }
 }
-
-export { UpdateProductService };

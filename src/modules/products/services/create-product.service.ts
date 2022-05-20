@@ -8,18 +8,19 @@ interface IRequest {
     quantity: number;
 }
 
-class CreateProductService {
+export class CreateProductService {
     public async execute({
         name,
         price,
         quantity,
     }: IRequest): Promise<Product> {
         const productExists = await ProductRepository.findByName(name);
+
         if (productExists) {
-            throw new AppError(
-                400,
-                'Already exists a product with this name.',
-            ).getError();
+            const promise = Promise.reject(
+                new AppError(400, 'Already exists one product with this name.'),
+            );
+            return promise.catch(error => error);
         }
 
         const product = ProductRepository.create({
@@ -32,5 +33,3 @@ class CreateProductService {
         return product;
     }
 }
-
-export { CreateProductService };
