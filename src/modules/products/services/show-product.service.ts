@@ -13,10 +13,7 @@ export class ShowProductService {
         });
 
         if (!product) {
-            const promise = Promise.reject(
-                new AppError(400, 'Product was not found.'),
-            );
-            return promise.catch(error => error);
+            throw new AppError(400, 'Product was not found.');
         }
 
         return product;
